@@ -10,8 +10,12 @@ let h = require('snabbdom/h').default; // helper function for creating vnodes
 
 import postal from 'postal/lib/postal.lodash'
 
-function view() {
-    return h('button', 'Increment');
+function view(state) {
+    return h('button', {on: {click: [clickHandler, 1]}}, 'Increment');
+}
+
+function clickHandler(number) {
+    console.log('button ' + number + ' was clicked!');
 }
 
 function updateDOM(container, newVnode) {
@@ -27,7 +31,7 @@ export default class ButtonComponent {
 
     publish(event) {
         postal.publish(event);
-        this.eventStore.push(event);
+        this.eventStore.add(event);
     }
 
     getSubscriptions() {

@@ -18,3 +18,14 @@ counterView.subscribe('sync', 'component.increment.count');
 incrementBtn.render();
 decrementBtn.render();
 counterView.render();
+
+let incrementCountByOneEvent = {
+    channel: "sync",
+    topic: "component.increment.count",
+    eventType: 'click',
+    data: {
+        amount: 1
+    }
+};
+
+incrementBtn.publish(incrementCountByOneEvent);

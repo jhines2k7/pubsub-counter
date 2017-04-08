@@ -49,19 +49,19 @@ export default class CounterView {
 
     publish(event) {
         postal.publish(event);
-        this._eventStore.add(event);
+        this.eventStore.add(event);
     }
 
     getSubscriptions() {
-        return this._subscriptions;
+        return this.subscriptions;
     }
 
     getEventStore() {
-        return this._eventStore;
+        return this.eventStore;
     }
 
     render(state) {
-        const newVnode = view(state, this);
+        const newVnode = view(state);
         this.container = updateDom(this.container, newVnode);
 
         return this.container;
