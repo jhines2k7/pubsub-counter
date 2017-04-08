@@ -14,10 +14,6 @@ function view() {
     return h('button', 'Decrement');
 }
 
-function updateDOM(container, newVnode) {
-    return patch(container, newVnode);
-}
-
 export default class ButtonComponent {
     constructor(container, eventStore) {
         this.container = container;
@@ -35,9 +31,6 @@ export default class ButtonComponent {
     }
 
     render() {
-        const newVnode = view();
-        this.container = updateDOM(this.container, newVnode);
-
-        return this.container;
+        return patch(this.container, view(this));
     }
 }

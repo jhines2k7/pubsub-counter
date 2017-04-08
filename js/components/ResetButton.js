@@ -10,20 +10,18 @@ let patch = snabbdom.init([ // Init patch function with chosen modules
 import h from 'snabbdom/h'
 
 function view(component) {
-    return h('button', {on: {click: clickHandler.bind(null, 1, component)}}, 'Increment');
+    return h('button', {on: {click: clickHandler.bind(null, component)}}, 'Reset');
 }
 
-function clickHandler(amount, component) {
-    let incrementCountByAmountEvent = {
+function clickHandler(component) {
+    let resetCountEvent = {
         channel: "sync",
-        topic: "component.increment.count",
+        topic: "component.reset.count",
         eventType: 'click',
-        data: {
-            amount: amount
-        }
+        data: {}
     };
 
-    component.publish(incrementCountByAmountEvent);
+    component.publish(resetCountEvent);
 }
 
 export default class ResetButton {
@@ -42,6 +40,6 @@ export default class ResetButton {
     }
 
     render() {
-        return patch(this.container, view(this));
+       return patch(this.container, view(this));
     }
 }

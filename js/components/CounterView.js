@@ -68,9 +68,15 @@ export default class CounterView {
 
     reduce(events) {
         return events.reduce(function(state, event) {
-            state.count += event.data.amount;
+            if(event.topic === 'component.reset.count') {
+                state.count = 0;
 
-            return state;
+                return state;
+            } else {
+                state.count += event.data.amount;
+
+                return state;
+            }
         }, {
             count: 0
         });
