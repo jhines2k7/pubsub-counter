@@ -17,7 +17,6 @@ counterView.subscribe('sync', 'component.increment.count');
 
 incrementBtn.render();
 decrementBtn.render();
-counterView.render();
 
 let incrementCountByOneEvent = {
     channel: "sync",
@@ -27,5 +26,28 @@ let incrementCountByOneEvent = {
         amount: 1
     }
 };
-
 incrementBtn.publish(incrementCountByOneEvent);
+
+incrementCountByOneEvent = {
+    channel: "sync",
+    topic: "component.increment.count",
+    eventType: 'click',
+    data: {
+        amount: 1
+    }
+};
+incrementBtn.publish(incrementCountByOneEvent);
+
+incrementCountByOneEvent = {
+    channel: "sync",
+    topic: "component.increment.count",
+    eventType: 'click',
+    data: {
+        amount: 1
+    }
+};
+incrementBtn.publish(incrementCountByOneEvent);
+
+let events = counterView.getEventStore().filter(counterView.getSubscriptions());
+let reducedState = counterView.reduce(events);
+counterView.render(reducedState);

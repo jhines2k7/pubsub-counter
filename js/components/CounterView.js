@@ -13,7 +13,7 @@ import postal from 'postal/lib/postal.lodash'
 function view(state) {
     "use strict";
 
-    return h('h1', '1');
+    return h('h1', typeof state.count === 'undefined' ? '0' : state.count);
 }
 
 function updateDom(container, newVnode) {
@@ -65,5 +65,14 @@ export default class CounterView {
         this.container = updateDom(this.container, newVnode);
 
         return this.container;
+    }
+
+    reduce(events) {
+        return events.reduce(function(state, event) {
+            state.count = typeof state.count === 'undefined' ? 0 : state.count;
+            state.count = state.count + event.data.amount;
+
+            return state;
+        }, {});
     }
 }
