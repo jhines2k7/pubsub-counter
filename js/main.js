@@ -1,9 +1,14 @@
 import EventStore from './EventStore'
-import ButtonComponent from './components/ButtonComponent'
+import IncrementButton from './components/IncrementButton'
+import DecrementButton from './components/DecrementButton'
 
 let eventStore = new EventStore();
 
-let container = document.getElementById('button');
-let incrementBtn = new ButtonComponent(container, eventStore);
+let container = document.getElementById('increment');
+let incrementBtn = new IncrementButton(container, eventStore);
+
+container = document.getElementById('decrement');
+let decrementBtn = new DecrementButton(container, eventStore);
 
 incrementBtn.render();
+decrementBtn.render();
