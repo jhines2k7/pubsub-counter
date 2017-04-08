@@ -48,7 +48,6 @@ export default class CounterView {
     }
 
     publish(event) {
-        postal.publish(event);
         this.eventStore.add(event);
     }
 
@@ -69,10 +68,11 @@ export default class CounterView {
 
     reduce(events) {
         return events.reduce(function(state, event) {
-            state.count = typeof state.count === 'undefined' ? 0 : state.count;
             state.count = state.count + event.data.amount;
 
             return state;
-        }, {});
+        }, {
+            count: 0
+        });
     }
 }

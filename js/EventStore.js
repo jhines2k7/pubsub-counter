@@ -1,3 +1,5 @@
+import postal from 'postal/lib/postal.lodash'
+
 export default class EventStore {
     constructor() {
         this.events = [];
@@ -10,12 +12,12 @@ export default class EventStore {
 
     add(event) {
         this.events.push(event);
+        postal.publish(event);
     }
 }
 
 function isEventForComponent(subscriptions) {
     return (event) => {
-        //return event.topic === topic && event.componentName === componentName;
-        return subscriptions.hasOwnProperty(event.topic) && event.topic !== 'component.update.casey.async.start';
+        return subscriptions.hasOwnProperty(event.topic) && event.topic;
     }
 }

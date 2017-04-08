@@ -1,4 +1,3 @@
-//let snabbdom = require('snabbdom');
 import snabbdom from 'snabbdom'
 
 let patch = snabbdom.init([ // Init patch function with chosen modules
@@ -8,7 +7,6 @@ let patch = snabbdom.init([ // Init patch function with chosen modules
     require('snabbdom/modules/eventlisteners').default
 ]);
 
-//let h = require('snabbdom/h').default; // helper function for creating vnodes
 import h from 'snabbdom/h'
 
 import postal from 'postal/lib/postal.lodash'
@@ -27,7 +25,6 @@ function clickHandler(amount, component) {
         }
     };
 
-    //eventStore.add(incrementCountByOneEvent);
     component.publish(incrementCountByAmountEvent);
 }
 
@@ -43,7 +40,6 @@ export default class ButtonComponent {
     }
 
     publish(event) {
-        postal.publish(event);
         this.eventStore.add(event);
     }
 
