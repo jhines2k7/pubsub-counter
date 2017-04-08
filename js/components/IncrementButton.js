@@ -9,8 +9,6 @@ let patch = snabbdom.init([ // Init patch function with chosen modules
 
 import h from 'snabbdom/h'
 
-import postal from 'postal/lib/postal.lodash'
-
 function view(component) {
     return h('button', {on: {click: clickHandler.bind(null, 1, component)}}, 'Increment');
 }
