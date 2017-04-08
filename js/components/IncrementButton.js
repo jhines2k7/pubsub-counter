@@ -1,17 +1,20 @@
-let snabbdom = require('snabbdom');
+//let snabbdom = require('snabbdom');
+import snabbdom from 'snabbdom'
 
 let patch = snabbdom.init([ // Init patch function with chosen modules
     require('snabbdom/modules/class').default, // makes it easy to toggle classes
     require('snabbdom/modules/props').default, // for setting properties on DOM elements
     require('snabbdom/modules/style').default, // handles styling on elements with support for animations
+    require('snabbdom/modules/eventlisteners').default
 ]);
 
-let h = require('snabbdom/h').default; // helper function for creating vnodes
+//let h = require('snabbdom/h').default; // helper function for creating vnodes
+import h from 'snabbdom/h'
 
 import postal from 'postal/lib/postal.lodash'
 
 function view(state) {
-    return h('button', {on: {click: [clickHandler, 1]}}, 'Increment');
+    return h('button', {on: {click: clickHandler.bind(null, 1)}}, 'Increment');
 }
 
 function clickHandler(number) {
