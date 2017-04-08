@@ -13,7 +13,7 @@ import postal from 'postal/lib/postal.lodash'
 function view(state) {
     "use strict";
 
-    return h('h1', typeof state.count === 'undefined' ? '0' : state.count);
+    return h('h1', state.count);
 }
 
 function updateDom(container, newVnode) {

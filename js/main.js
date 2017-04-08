@@ -23,4 +23,4 @@ counterView.subscribe('sync', 'component.reset.count');
 incrementBtn.render();
 decrementBtn.render();
 resetBtn.render();
-counterView.render({});
+counterView.render({count: 0});
