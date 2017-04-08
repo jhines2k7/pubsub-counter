@@ -34,11 +34,11 @@ export default class CounterView {
             channel: channel,
             topic: topic,
             callback: function(data, envelope) {
-                /*let events = this._eventStore.filter(this._subscriptions);
+                let events = this.eventStore.filter(this.subscriptions);
 
-                 let reducedState = this.reduce(events);
+                let reducedState = this.reduce(events);
 
-                 this.render(reducedState);*/
+                this.render(reducedState);
             }.bind(this)
         });
 

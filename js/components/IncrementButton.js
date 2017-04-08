@@ -13,11 +13,11 @@ import h from 'snabbdom/h'
 
 import postal from 'postal/lib/postal.lodash'
 
-function view(eventStore) {
-    return h('button', {on: {click: clickHandler.bind(null, 1, eventStore)}}, 'Increment');
+function view(component) {
+    return h('button', {on: {click: clickHandler.bind(null, 1, component)}}, 'Increment');
 }
 
-function clickHandler(amount, eventStore) {
+function clickHandler(amount, component) {
     let incrementCountByOneEvent = {
         channel: "sync",
         topic: "component.increment.count",
@@ -27,7 +27,8 @@ function clickHandler(amount, eventStore) {
         }
     };
 
-    eventStore.add(incrementCountByOneEvent);
+    //eventStore.add(incrementCountByOneEvent);
+    component.publish(incrementCountByOneEvent);
 }
 
 function updateDOM(container, newVnode) {
@@ -51,7 +52,7 @@ export default class ButtonComponent {
     }
 
     render() {
-        const newVnode = view(this.eventStore);
+        const newVnode = view(this);
         this.container = updateDOM(this.container, newVnode);
 
         return this.container;
