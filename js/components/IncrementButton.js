@@ -18,7 +18,7 @@ function view(component) {
 }
 
 function clickHandler(amount, component) {
-    let incrementCountByOneEvent = {
+    let incrementCountByAmountEvent = {
         channel: "sync",
         topic: "component.increment.count",
         eventType: 'click',
@@ -28,7 +28,7 @@ function clickHandler(amount, component) {
     };
 
     //eventStore.add(incrementCountByOneEvent);
-    component.publish(incrementCountByOneEvent);
+    component.publish(incrementCountByAmountEvent);
 }
 
 function updateDOM(container, newVnode) {
