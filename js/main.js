@@ -18,18 +18,4 @@ counterView.subscribe('sync', 'component.increment.count');
 
 incrementBtn.render();
 decrementBtn.render();
-
-/*let initializeStateEvent = {
-    channel: "initialize",
-    topic: "component.initialize.counterView",
-    eventType: 'initialize',
-    data: {
-        amount: 1
-    }
-};
-postal.publish(initializeStateEvent);
-eventStore.add(initializeStateEvent);
-
-let events = counterView.getEventStore().filter(counterView.getSubscriptions());
-let reducedState = counterView.reduce(events);*/
 counterView.render({});
