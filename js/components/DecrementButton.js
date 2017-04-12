@@ -4,6 +4,7 @@ let patch = snabbdom.init([ // Init patch function with chosen modules
     require('snabbdom/modules/class').default, // makes it easy to toggle classes
     require('snabbdom/modules/props').default, // for setting properties on DOM elements
     require('snabbdom/modules/style').default, // handles styling on elements with support for animations
+    require('snabbdom/modules/eventlisteners').default
 ]);
 
 let h = require('snabbdom/h').default; // helper function for creating vnodes
@@ -15,7 +16,7 @@ function view(component) {
 }
 
 function clickHandler(amount, component) {
-    let incrementCountByAmountEvent = {
+    let decrementCountByAmountEvent = {
         channel: "sync",
         topic: "component.decrement.count",
         eventType: 'click',
@@ -24,18 +25,17 @@ function clickHandler(amount, component) {
         }
     };
 
-    component.publish(incrementCountByAmountEvent);
+    component.publish(decrementCountByAmountEvent);
 }
 
-export default class ButtonComponent {
+export default class DecrementButtonComponent {
     constructor(container, eventStore) {
         this.container = container;
         this.eventStore = eventStore;
     }
 
     publish(event) {
-        postal.publish(event);
-        this.eventStore.push(event);
+        this.eventStore.add(event);
     }
 
     render() {

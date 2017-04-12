@@ -18,6 +18,7 @@ let resetBtn = new ResetButton(container, eventStore);
 container = document.getElementById('counter-view');
 let counterView = new CounterView(container, eventStore);
 counterView.subscribe('sync', 'component.increment.count');
+counterView.subscribe('sync', 'component.decrement.count');
 counterView.subscribe('sync', 'component.reset.count');
 
 incrementBtn.render();
