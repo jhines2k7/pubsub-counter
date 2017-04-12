@@ -72,11 +72,20 @@ export default class CounterView {
                 state.count = 0;
 
                 return state;
-            } else {
+            }
+
+            if (event.topic === 'component.increment.count') {
                 state.count += event.data.amount;
 
                 return state;
             }
+
+            if(event.topic === 'component.decrement.count') {
+                state.count -= event.data.amount;
+
+                return state;
+            }
+
         }, {
             count: 0
         });

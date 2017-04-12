@@ -10,24 +10,32 @@ let h = require('snabbdom/h').default; // helper function for creating vnodes
 
 import postal from 'postal/lib/postal.lodash'
 
-function view() {
-    return h('button', 'Decrement');
+function view(component) {
+    return h('button', {on: {click: clickHandler.bind(null, 1, component)}}, 'Decrement');
+}
+
+function clickHandler(amount, component) {
+    let incrementCountByAmountEvent = {
+        channel: "sync",
+        topic: "component.decrement.count",
+        eventType: 'click',
+        data: {
+            amount: amount
+        }
+    };
+
+    component.publish(incrementCountByAmountEvent);
 }
 
 export default class ButtonComponent {
     constructor(container, eventStore) {
         this.container = container;
         this.eventStore = eventStore;
-        this.subscriptions = {};
     }
 
     publish(event) {
         postal.publish(event);
         this.eventStore.push(event);
-    }
-
-    getSubscriptions() {
-        return this.subscriptions;
     }
 
     render() {

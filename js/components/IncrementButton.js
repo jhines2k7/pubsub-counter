@@ -30,15 +30,10 @@ export default class ResetButton {
     constructor(container, eventStore) {
         this.container = container;
         this.eventStore = eventStore;
-        this.subscriptions = {};
     }
 
     publish(event) {
         this.eventStore.add(event);
-    }
-
-    getSubscriptions() {
-        return this.subscriptions;
     }
 
     render() {
